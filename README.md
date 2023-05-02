@@ -1,4 +1,4 @@
-# User's CRUD #
+# Client's CRUD #
 
 This is a demo app built with the intention to acquire habilities and skills using Kotlin Programming Language
 
@@ -10,7 +10,7 @@ This is a demo app built with the intention to acquire habilities and skills usi
 ## Version 1 specs ##
 
 ### Technical Stack ###
-* Data storage: Room database (localstorage)
+* Data storage: SQLite database (localstorage)
 * FrontEnd, BackEnd, Business Logic: Kotlin
 
 ### Available Functions ###
