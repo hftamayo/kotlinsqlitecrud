@@ -2,6 +2,7 @@ package com.hftamayo.kotlincrudsqlite
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -38,6 +39,27 @@ class SQLiteHelper(context:Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
         val success = db.insert(TBL_STUDENT, null, contentValues)
         db.close()
         return success
+    }
+
+    fun getAllStudent(): ArrayList<StudentModel>{
+        val stdList: ArrayList<StudentModel> = ArrayList()
+        val selectQuery = "SELECT * FROM $TBL_STUDENT"
+        val db = this.readableDatabase
+
+        val cursor: Cursor?
+
+        try{
+            cursor = db.rawQuery(selectQuery, null)
+
+        } catch(e: Exception){
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+
+        var id: Int
+        var name: String
+        var email: String
     }
 
 }
