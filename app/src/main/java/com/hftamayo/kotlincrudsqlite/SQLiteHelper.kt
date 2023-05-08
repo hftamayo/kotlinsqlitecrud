@@ -14,13 +14,16 @@ class SQLiteHelper(context:Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
         private const val NAME = "name"
         private const val EMAIL = "email"
     }
-    override fun onCreate(p0: SQLiteDatabase?) {
-
-        TODO("Not yet implemented")
+    override fun onCreate(db: SQLiteDatabase?) {
+        var createTblStudent = ("CREATE TABLE " + TBL_STUDENT + "("
+                + ID + "INTEGER PRIMARY KEY,"+ NAME + "TEXT,"
+                + EMAIL + "TEXT"+ ")")
+        db?.execSQL(createTblStudent)
     }
 
-    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        TODO("Not yet implemented")
+    override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
+        db!!.execSQL("DROP TABLE IF EXISTS $TBL_STUDENT")
+        onCreate(db)
     }
 
 }
