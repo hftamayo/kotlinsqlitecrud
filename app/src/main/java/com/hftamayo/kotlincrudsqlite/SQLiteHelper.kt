@@ -1,5 +1,6 @@
 package com.hftamayo.kotlincrudsqlite
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -24,6 +25,19 @@ class SQLiteHelper(context:Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS $TBL_STUDENT")
         onCreate(db)
+    }
+
+    fun insertStudent(std: StudentModel): Long {
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(ID, std.id)
+        contentValues.put(NAME, std.name)
+        contentValues.put(EMAIL, std.email)
+
+        val success = db.insert(TBL_STUDENT, null, contentValues)
+        db.close()
+        return success
     }
 
 }
