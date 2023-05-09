@@ -1,5 +1,6 @@
 package com.hftamayo.kotlincrudsqlite
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -41,6 +42,7 @@ class SQLiteHelper(context:Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
         return success
     }
 
+    @SuppressLint("Range")
     fun getAllStudent(): ArrayList<StudentModel>{
         val stdList: ArrayList<StudentModel> = ArrayList()
         val selectQuery = "SELECT * FROM $TBL_STUDENT"
@@ -60,6 +62,18 @@ class SQLiteHelper(context:Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
         var id: Int
         var name: String
         var email: String
+
+        if(cursor.moveToFirst()){
+            do {
+                id = cursor.getInt(cursor.getColumnIndex("id"))
+                name = cursor.getString(cursor.getColumnIndex("name"))
+                email = cursor.getString(cursor.getColumnIndex("email"))
+
+                val std = StudentModel(id = id, name = name, email = email)
+                stdList.add(std)
+            }while (cursor.moveToNext())
+        }
+        return stdList
     }
 
 }
