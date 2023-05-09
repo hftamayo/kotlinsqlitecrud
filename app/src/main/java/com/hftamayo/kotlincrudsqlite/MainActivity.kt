@@ -39,13 +39,15 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Student Added!", Toast.LENGTH_SHORT ).show()
                 clearEditText()
             } else {
-
+                Toast.makeText(this, "An error ocurred during record insertion", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun clearEditText(){
-
+        edName.setText("")
+        edEmail.setText("")
+        edName.requestFocus()
     }
 
     private fun initView(){
