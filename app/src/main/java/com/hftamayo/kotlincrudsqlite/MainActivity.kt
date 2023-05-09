@@ -2,6 +2,7 @@ package com.hftamayo.kotlincrudsqlite
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -23,6 +24,12 @@ class MainActivity : AppCompatActivity() {
         initView()
         sqLiteHelper = SQLiteHelper(this)
         btnAdd.setOnClickListener { addStudent() }
+        btnView.setOnClickListener{ getStudents() }
+    }
+
+    private fun getStudents(){
+        val stdList = sqLiteHelper.getAllStudent()
+        Log.e("testing:", "${stdList.size}")
     }
 
     private fun addStudent(){
