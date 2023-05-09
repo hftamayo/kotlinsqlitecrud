@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -21,6 +22,30 @@ class MainActivity : AppCompatActivity() {
 
         initView()
         sqLiteHelper = SQLiteHelper(this)
+        btnAdd.setOnClickListener { addStudent() }
+    }
+
+    private fun addStudent(){
+        val name = edName.text.toString()
+        val email = edEmail.text.toString()
+
+        if(name.isEmpty() || email.isEmpty()){
+            Toast.makeText(this, "Please enter required field", Toast.LENGTH_SHORT).show()
+        }else {
+            val std = StudentModel(name = name, email = email)
+            val status = sqLiteHelper.insertStudent(std)
+            //checking for the status of the operation
+            if(status > -1 ){
+                Toast.makeText(this, "Student Added!", Toast.LENGTH_SHORT ).show()
+                clearEditText()
+            } else {
+
+            }
+        }
+    }
+
+    private fun clearEditText(){
+
     }
 
     private fun initView(){
