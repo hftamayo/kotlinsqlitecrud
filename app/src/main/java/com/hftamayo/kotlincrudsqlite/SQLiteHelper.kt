@@ -19,8 +19,8 @@ class SQLiteHelper(context:Context): SQLiteOpenHelper(context, DATABASE_NAME, nu
     }
     override fun onCreate(db: SQLiteDatabase?) {
         var createTblStudent = ("CREATE TABLE " + TBL_STUDENT + "("
-                + ID + "INTEGER PRIMARY KEY,"+ NAME + "TEXT,"
-                + EMAIL + "TEXT"+ ")")
+                + ID + " INTEGER PRIMARY KEY,"+ NAME + " TEXT,"
+                + EMAIL + " TEXT"+ " )")
         db?.execSQL(createTblStudent)
     }
 
