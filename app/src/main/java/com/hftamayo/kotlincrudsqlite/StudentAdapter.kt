@@ -21,7 +21,7 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
         holder.bindView(std)
     }
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return stdList.size
     }
 
     class StudentViewHolder(view: View) : RecyclerView.ViewHolder(view){
