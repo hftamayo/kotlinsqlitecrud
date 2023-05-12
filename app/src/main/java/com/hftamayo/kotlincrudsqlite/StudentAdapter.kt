@@ -8,10 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 
 class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
     private var stdList: ArrayList<StudentModel> = ArrayList()
+    private var onClickItem:((StudentModel) -> Unit)? = null
 
     fun addItems(items: ArrayList<StudentModel> ){
         this.stdList = items
         notifyDataSetChanged()
+    }
+
+    fun setOnClickItem(callback: (StudentModel)->Unit){
+        this.onClickItem = callback
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = StudentViewHolder (
         LayoutInflater.from(parent.context).inflate(R.layout.card_items_std, parent, false)
@@ -20,6 +25,7 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val std = stdList[position]
         holder.bindView(std)
+        holder.itemView.setOnClickListener{}
     }
     override fun getItemCount(): Int {
         return stdList.size

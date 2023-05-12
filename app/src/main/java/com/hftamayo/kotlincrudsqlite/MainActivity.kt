@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             if(status > -1 ){
                 Toast.makeText(this, "Student Added!", Toast.LENGTH_SHORT ).show()
                 clearEditText()
+                getStudents()
             } else {
                 Toast.makeText(this, "An error ocurred during record insertion", Toast.LENGTH_SHORT).show()
             }
