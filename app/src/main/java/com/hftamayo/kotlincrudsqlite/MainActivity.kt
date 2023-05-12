@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,12 +18,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnView: Button
 
     private lateinit var sqLiteHelper: SQLiteHelper
+    private lateinit var recyclerView: RecyclerView
+    private var adapter: StudentAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initView()
+        initRecyclerView()
         sqLiteHelper = SQLiteHelper(this)
         btnAdd.setOnClickListener { addStudent() }
         btnView.setOnClickListener{ getStudents() }
@@ -30,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private fun getStudents(){
         val stdList = sqLiteHelper.getAllStudent()
         Log.e("testing:", "${stdList.size}")
+        adapter?.addItems(stdList)
     }
 
     private fun addStudent(){
@@ -57,11 +63,19 @@ class MainActivity : AppCompatActivity() {
         edName.requestFocus()
     }
 
+    private fun initRecyclerView(){
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = StudentAdapter()
+        recyclerView.adapter = adapter
+
+    }
+
     private fun initView(){
         edName = findViewById(R.id.edName)
         edEmail = findViewById(R.id.edEmail)
         btnAdd = findViewById(R.id.btnAdd)
         btnView = findViewById(R.id.btnView)
+        recyclerView = findViewById(R.id.recyclerView)
     }
 
 
