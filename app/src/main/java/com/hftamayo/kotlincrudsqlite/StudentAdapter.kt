@@ -11,6 +11,7 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
 
     fun addItems(items: ArrayList<StudentModel> ){
         this.stdList = items
+        notifyDataSetChanged()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = StudentViewHolder (
         LayoutInflater.from(parent.context).inflate(R.layout.card_items_std, parent, false)
