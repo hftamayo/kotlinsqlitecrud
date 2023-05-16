@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         sqLiteHelper = SQLiteHelper(this)
         btnAdd.setOnClickListener { addStudent() }
         btnView.setOnClickListener{ getStudents() }
+        adapter?.setOnClickItem { Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show() }
     }
 
     private fun getStudents(){

@@ -25,7 +25,7 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val std = stdList[position]
         holder.bindView(std)
-        holder.itemView.setOnClickListener{}
+        holder.itemView.setOnClickListener{ onClickItem?.invoke(std)}
     }
     override fun getItemCount(): Int {
         return stdList.size
