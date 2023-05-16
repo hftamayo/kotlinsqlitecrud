@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var edEmail: EditText
     private lateinit var btnAdd: Button
     private lateinit var btnView: Button
+    private lateinit var btnUpdate: Button
 
     private lateinit var sqLiteHelper: SQLiteHelper
     private lateinit var recyclerView: RecyclerView
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         sqLiteHelper = SQLiteHelper(this)
         btnAdd.setOnClickListener { addStudent() }
         btnView.setOnClickListener{ getStudents() }
+        btnUpdate.setOnClickListener{ updateStudent() }
+
         adapter?.setOnClickItem { Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
             edName.setText(it.name)
             edEmail.setText(it.email)
@@ -64,6 +67,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateStudent(){
+        val name = edName.text.toString()
+        val email = edEmail.text.toString()
+
+        if(name == std?.name && email == std?.email){
+
+        }
+    }
+
     private fun clearEditText(){
         edName.setText("")
         edEmail.setText("")
@@ -82,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         edEmail = findViewById(R.id.edEmail)
         btnAdd = findViewById(R.id.btnAdd)
         btnView = findViewById(R.id.btnView)
+        btnUpdate = findViewById(R.id.btnUpdate)
         recyclerView = findViewById(R.id.recyclerView)
     }
 
