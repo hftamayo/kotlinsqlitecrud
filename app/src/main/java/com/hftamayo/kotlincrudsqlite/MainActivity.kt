@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sqLiteHelper: SQLiteHelper
     private lateinit var recyclerView: RecyclerView
     private var adapter: StudentAdapter? = null
+    private var std: StudentModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,11 @@ class MainActivity : AppCompatActivity() {
         sqLiteHelper = SQLiteHelper(this)
         btnAdd.setOnClickListener { addStudent() }
         btnView.setOnClickListener{ getStudents() }
-        adapter?.setOnClickItem { Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show() }
+        adapter?.setOnClickItem { Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
+            edName.setText(it.name)
+            edEmail.setText(it.email)
+            std = it
+        }
     }
 
     private fun getStudents(){
