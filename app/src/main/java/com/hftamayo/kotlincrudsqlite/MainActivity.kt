@@ -72,7 +72,18 @@ class MainActivity : AppCompatActivity() {
         val email = edEmail.text.toString()
 
         if(name == std?.name && email == std?.email){
+            Toast.makeText(this, "Record not changed...", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if(std == null) return
 
+        val std = StudentModel(id = std!!.id, name = name, email = email)
+        val status = sqLiteHelper.updateStudent(std)
+        if(status > -1){
+            clearEditText()
+            getStudents()
+        } else {
+            Toast.makeText(this, "Update failed", Toast.LENGTH_SHORT).show()
         }
     }
 
