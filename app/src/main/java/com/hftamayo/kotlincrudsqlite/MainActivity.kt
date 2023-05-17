@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             std = it
         }
         adapter?.setOnClickDeleteItem {
+            deleteStudent(it.id)
 
         }
     }
@@ -96,6 +97,8 @@ class MainActivity : AppCompatActivity() {
         builder.setMessage("Are you sure you want to delete item?")
         builder.setCancelable(true)
         builder.setPositiveButton("Yes"){ dialog, _ ->
+            sqLiteHelper.deleteStudentById(id)
+            getStudents()
             dialog.dismiss()
         }
         builder.setNegativeButton("No"){ dialog, _ ->
